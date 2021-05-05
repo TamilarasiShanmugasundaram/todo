@@ -1,0 +1,59 @@
+.header {
+  background-color: #2596be;
+  height: 50px;
+}
+
+.app {
+  color: white;
+  padding-left: 20px;
+  padding-top: 15px;
+  display: inline-block;
+  width: 30%;
+}
+
+.todo {
+  color: white;
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+.d-input {
+  background-color: lightskyblue;
+  display: inline-block;
+  width: 25%;
+}
+
+.d-input i {
+  color: white;
+  display: inline-block;
+}
+
+.input-field {
+  display: inline-block;
+  border: none;
+  height: 30px;
+  background-color: lightskyblue;
+  width: 90%;
+}
+
+.setting {
+  color: white;
+  padding-left: 35%;
+  padding-top: 15px;
+  display: inline-block;
+}
+
+.question {
+  color: white;
+  padding-left: 20px;
+  padding-top: 15px;
+  display: inline-block;
+}
+
+.left-container {
+  height: 90vh;
+  background-color: lightsteelblue;
+  display: inline-block;
+  width: 30%;
+}
+/*# sourceMappingURL=styles.css.map */
