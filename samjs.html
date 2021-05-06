@@ -18,7 +18,7 @@
   
 <div class="d-input">
   <i class="fa fa-search icon" ></i>
-  <input class="input-field" type="text" placeholder="search">
+  <input class="input-field" type="text">
   </div>
 
   
@@ -28,72 +28,21 @@
   <div class="question">
     <i class="fa fa-question icon"></i>
   </div>
-
-
+  
 </div>
 
 <div class="left-container">
-
-  <div id="user-list">
-  <div>
-    <div id="sun" class="fa" style="display: inline-block;padding-left: 10px;padding-top: 60px;"></div>
-    <p id="p1" style="display: inline-block;padding-left: 10px;"></p>
+  <div id="userlist">
+    <ul id="ul">
+    <ul>    
   </div>
-  <div>
-    <div id="star" class="fa" style="display: inline-block;padding-left: 10px;"></div>
-    <p id="p2" style="display: inline-block;padding-left: 10px;"></p>
+  <div class="new">
+    <p id="plus" class="fa"></p>
+    <input  type ="text" id="newitem"  placeholder="New list"></input>
+    <span id="newlist" class="fa"></span>
   </div>
-  <div>
-    <div id="calendar" class="fa" style="display: inline-block;padding-left: 10px;"></div>
-    <p id="p3" style="display: inline-block;padding-left: 10px;"></p>
-  </div>
-  <div>
-    <div id="user" class="fa" style="display: inline-block;padding-left: 10px;"></div>
-    <p id="p4" style="display: inline-block;padding-left: 10px;"></p>
-  </div>
-  <div>
-    <div id="home" class="fa" style="display: inline-block;padding-left: 10px;"></div>
-    <p id="p5" style="display: inline-block;padding-left: 10px;"></p>
-  </div>
-  <div>
-    <div id="plus" class="fa" style="display: inline-block;padding-left: 10px;"></div>
-    <p id="p6" style="display: inline-block;padding-left: 10px;"></p>
-  </div>
-  </div>
-  
-  <script>
-    let sun = document.getElementById("sun");
-    sun.innerHTML = "&#xf185"; 
-    let star = document.getElementById("star");
-    star.innerHTML = "&#xf005";  
-    let calender = document.getElementById("calendar");
-    calender.innerHTML = "&#xf073";  
-    let user = document.getElementById("user");
-    user.innerHTML = "&#xf007"; 
-    let home = document.getElementById("home");
-    home.innerHTML = "&#xf015";
-    let plus = document.getElementById("plus");
-    plus.innerHTML = "&#xf067"; 
-  var element1 = document.createTextNode("My Day");
-  var element2 = document.createTextNode("Important");  
-  var element3 = document.createTextNode("Planned");  
-  var element4 = document.createTextNode("Assigned to you");  
-  var element5 = document.createTextNode("Tasks");  
-  var element6 = document.createTextNode("New list");  
-  var p1 = document.getElementById("p1");
-  var p2 = document.getElementById("p2");
-  var p3 = document.getElementById("p3");
-  var p4 = document.getElementById("p4");
-  var p5 = document.getElementById("p5");
-  var p6 = document.getElementById("p6");
-  p1.appendChild(element1);
-  p2.appendChild(element2);
-  p3.appendChild(element3);
-  p4.appendChild(element4);
-  p5.appendChild(element5);
-  p6.appendChild(element6);
-  </script>
-  </div>
+</div>
+<script src='script.js'></script>
 </body>
 
 </html>
