@@ -4,45 +4,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <link rel="stylesheet" href="styles.css">
-
 </head>
-
 <body>
   <div class="header">
     <div class="app">
       <i class="fas fa-th" ></i>
       <label class="todo">To Do</label>
-  
     </div>
-  
-  
 <div class="d-input">
   <i class="fa fa-search icon" ></i>
   <input class="input-field" type="text">
-  </div>
-
-  
-  <div class="setting">
+</div>  
+<div class="setting">
     <i class="fa fa-cog icon"></i>
-  </div>
-  <div class="question">
+</div>
+<div class="question">
     <i class="fa fa-question icon"></i>
+</div>
+</div>
+<div class="container">
+  <div class="left-container">
+    <div>
+      <ul id="userCategory">
+      <ul>    
+    </div>
+    <div class="new">
+      <span id="plus" class="fa"></span>
+      <input  type ="text" id="newitem" onchange="addNewList()" placeholder="New list"></input>
+    </div >
+    <div class="newadd_icon"><span id="newlist" class="fa"></span></div>
   </div>
-  
+  <div class="right-container">
+    <div class="task">
+      <p id="title"></p>
+      <span id="circle" class="fa"> </span>
+      <input class = "i-add-task" type ="text" id="newtask"  onchange="addNewTask()" placeholder="Add a task due today"></input>
+      <p id="userTasks"></p>   
+    </div>
+    </div>
+  </div>
 </div>
 
-<div class="left-container">
-  <div id="userlist">
-    <ul id="ul">
-    <ul>    
-  </div>
-  <div class="new">
-    <p id="plus" class="fa"></p>
-    <input  type ="text" id="newitem"  placeholder="New list"></input>
-    <span id="newlist" class="fa"></span>
-  </div>
-</div>
 <script src='script.js'></script>
 </body>
-
 </html>

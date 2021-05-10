@@ -1,0 +1,131 @@
+.header  {
+    background-color: #2596be;
+    height:50px;
+}
+.d-block {
+    display: inline-block;
+}
+.app {
+    color: white;padding-left: 20px;padding-top: 15px;
+    display: inline-block;
+    width:30%;
+}
+li:hover {
+    background-color: white;
+}
+ul {
+    padding: unset;
+    span {
+        padding-left: 40px;
+    }
+}
+li {
+    list-style: none;
+}
+.newadd_icon {
+display: inline-block;
+}
+.new:hover {
+    background-color: white;
+}
+.new {
+    width:90%;
+    display: inline-block;
+    height: 7%;
+    span {
+        padding-left: 40px;
+    }
+    input:hover {
+        background-color: white;
+    }
+    input:focus {
+        outline: none;
+    }
+    input {
+        width:76%;
+        border-style: none;
+        height: 30px;
+        padding-bottom: 10px;
+        background-color:#F4F4F4;
+        padding-left: 10px;
+    }
+}
+
+.symbol {
+    display: inline-block;
+    padding-left: 20px;
+}
+.todo {
+    color: white;
+    padding-left: 20px;
+    font-weight: bold;
+    
+}
+
+.d-input {
+    background-color: lightskyblue;
+    display: inline-block;
+    width:25%;
+    i {
+        color: white;
+        display: inline-block;
+    }
+}
+.input-field {
+    display: inline-block;
+    border:none;
+    height:30px;
+    background-color: lightskyblue;
+    width:90%;
+}
+.setting {
+    color: white;
+    padding-left: 35%;
+    padding-top: 15px;
+    display: inline-block;
+}
+.question {
+    color: white;
+    padding-left: 20px;
+    padding-top: 15px;
+    display: inline-block;
+}
+.left-container {
+    height:90vh;
+    background-color:#F4F4F4;
+    display: inline-block;
+    width: 25%;
+    vertical-align: top;
+    white-space: normal;
+}
+.right-container {
+    height:90vh;
+    white-space: normal;
+    display: inline-block;
+    width: 74%;
+}
+.task {
+    span {
+        display: inline-block;
+    }
+}
+.i-add-task {
+    display: none;
+}
+
+.enable {
+    display: block;
+    display: inline-block;
+    padding-left: 20px;
+    outline: none;
+    border-style: none;
+}
+.imp-star {
+    
+    display: inline-block;
+}
+.tasks {
+    width:93%;
+    display: inline-block;
+    padding-left: 20px;
+}
