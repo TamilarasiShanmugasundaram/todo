@@ -42,7 +42,7 @@ display: inline-block;
         outline: none;
     }
     input {
-        width:76%;
+        width:71%;
         border-style: none;
         height: 30px;
         padding-bottom: 10px;
@@ -69,12 +69,13 @@ display: inline-block;
     i {
         color: white;
         display: inline-block;
+        padding-left: 7px;
     }
 }
 .input-field {
     display: inline-block;
     border:none;
-    height:30px;
+    height:25px;
     background-color: lightskyblue;
     width:90%;
 }
@@ -94,7 +95,7 @@ display: inline-block;
     height:90vh;
     background-color:#F4F4F4;
     display: inline-block;
-    width: 25%;
+    width: 20%;
     vertical-align: top;
     white-space: normal;
 }
@@ -102,17 +103,20 @@ display: inline-block;
     height:90vh;
     white-space: normal;
     display: inline-block;
-    width: 74%;
+    width: 79%;
 }
 .task {
-    span {
-        display: inline-block;
-    }
+ input {
+     padding-top: 20px;
+ }
+}
+.title {
+    font-size: 25PX;
+    color: blue;
 }
 .i-add-task {
     display: none;
 }
-
 .enable {
     display: block;
     display: inline-block;
@@ -123,6 +127,12 @@ display: inline-block;
 .imp-star {
     
     display: inline-block;
+}
+.tasks_strikeOut {
+    width:93%;
+    display: inline-block;
+    padding-left: 20px;
+    text-decoration: line-through;
 }
 .tasks {
     width:93%;
