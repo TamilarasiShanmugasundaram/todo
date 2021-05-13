@@ -3,7 +3,6 @@
   var list = ["My Day","Important", "Planned", "Assigned to you", "Tasks"];
   var symbol_list = ["&#xf185", "&#xf005", "&#xf073", "&#xf067","&#xf007", "&#xf0ca"];
   var task_list = [];
-  var id = 0;
   init();
 
   function init() {
@@ -30,10 +29,11 @@
         paragraph.classList.add("symbol"); 
     }
   }
-      //To bind to add new category in left side
-      document.getElementById("newCategory").addEventListener("click",function(event) {
-        addNewCategory();
-      });
+
+  //To bind to add new category in left side
+  document.getElementById("newCategory").addEventListener("click",function(event) {
+    addNewCategory();
+  });
     
       
 //To add new category in left side
@@ -69,10 +69,10 @@ function addNewCategory() {
     if(tag.tagName=="LI") {
       var tag = tag.childNodes[1];
     }
-    renderRightSide(tag);
+    renderRightSide(tag, event);
   });
 
-  function renderRightSide(tag) {
+  function renderRightSide(tag, event) {
     var title = document.getElementById("title");
     title.innerHTML = tag.innerHTML +"      ...";
     var plus = document.getElementById("icon");
@@ -83,49 +83,45 @@ function addNewCategory() {
     renderTasks(tag);
   }
   function renderTasks(tag) {
-   // for(i=0;i<task_list.length;i++){
-      document.getElementById("userTasks").childNodes.forEach(ele => {
+    for(i=0;i<task_list.length;i++){
+      for(j=0;j<task_list[i].tasks.length;j++){
+             document.getElementById("userTasks").childNodes.forEach(ele => {
         ele.remove();
       });
-    // }
+     }}
      if(task_list.length > 0){
-       for(i =0;i<task_list.length;i++) {
+      for(i =0;i<task_list.length;i++) {
          let catogories =task_list[i].category;
          if(catogories === tag.innerHTML) {
            document.getElementById("newtask"). value = "";
            let parent = document.getElementById("userTasks");
+           for(j=0;j<task_list[i].tasks.length;j++) { 
            let li = document.createElement("li");
-           let input = document.createElement("input");
-           let star = document.createElement("span");
-           let paragraph = document.createElement("p");
-           let hr = document.createElement("hr");
-           parent.appendChild(li);
-           input.type = "radio";
-           input.id= i; 
-           for(j=0;j<task_list[i].tasks.length;j++) {
+            let input = document.createElement("input");
+            let star = document.createElement("span");
+            let paragraph = document.createElement("p");
+            let hr = document.createElement("hr");
             paragraph.innerHTML = task_list[i].tasks[j].taskName;
+            input.type = "radio";
+              if(task_list[i].tasks[j].isImportant == "true") {
+               star.className = "fa fa-star";
+              } else {
+               star.className = "far fa-star";
+              }
+              if(task_list[i].tasks[j].isComplete == "false") {
+                input.checked = true;
+                paragraph.className = "tasks_strikeOut";
+               } else {
+               paragraph.className = "tasks";
+               }
+               parent.appendChild(li);
+               li.appendChild(input);
+               li.appendChild(paragraph);
+               li.appendChild(star);
+               li.appendChild(hr);
            }
-           li.appendChild(input);
-           li.appendChild(paragraph);
-           li.appendChild(star);
-           li.appendChild(hr);
-           for(j=0;j<task_list[i].tasks.length;j++) {
-             if(task_list[i].tasks[j].isImportant == "true") {
-              star.className = "fa fa-star";
-             } else {
-              star.className = "far fa-star";
-             }
-           if(task_list[i].tasks[j].isComplete == "false") {
-            document.getElementById(i).checked = true;
-            paragraph.className = "tasks_strikeOut";
-            break;
-           } else {
-           paragraph.className = "tasks";
-           }
-          }
-          
-         }
-       }
+         }         
+        }
      }
   }
 
@@ -150,8 +146,6 @@ function addNewCategory() {
           let paragraph = document.createElement("p");
           let hr = document.createElement("hr");
           input.type = "radio";
-          input.id = id++;
-          star.id = id++;
           input.className = "checkbox";
           if(category == "Important"){
             star.className = "fa fa-star";
@@ -173,8 +167,23 @@ function addNewCategory() {
 
 //Add task in task list
 function addTask(categories, Usertask, complete, important) {
+  if(task_list.length == 0) {
+    var taskDetails = {
+       category : categories,
+       tasks  : [
+         task = {
+           taskName : Usertask,
+           isComplete : complete,
+           isImportant : important
+         }
+       ],
+     };
+     task_list.push(taskDetails);
+    }
+  let flag = 0;
   for(i=0;i<task_list.length;i++){    
     if(categories == task_list[i].category) {
+      flag = 1;
      var task = {
         taskName : Usertask,
         isComplete : complete,
@@ -182,7 +191,8 @@ function addTask(categories, Usertask, complete, important) {
       }
      task_list[i].tasks.push(task);
      break;
-    } else {
+    } }
+    if(flag==0) {
       var taskDetails = {
         category : categories,
         tasks  : [
@@ -194,28 +204,18 @@ function addTask(categories, Usertask, complete, important) {
         ],
       };
       task_list.push(taskDetails);
-      break;
     }
-  }
-  if(task_list.length == 0) {
-  var taskDetails = {
-     category : categories,
-     tasks  : [
-       task = {
-         taskName : Usertask,
-         isComplete : complete,
-         isImportant : important
-       }
-     ],
-   };
-   task_list.push(taskDetails);
-  }
    return Usertask;
  }
 
  //Bind function whrn user click on user task list
 document.getElementById("userTasks").addEventListener("click",function(event){
   var target = event.target;
+
+  if(target.tagName == "P" || target.tagName =="LI") {
+    alert("sad");
+    target.className = "step";
+  } 
   if(target.type == "radio") {
     for(i=0;i<task_list.length;i++){
       for(j=0;j<task_list[i].tasks.length;j++) {
@@ -223,11 +223,10 @@ document.getElementById("userTasks").addEventListener("click",function(event){
           if(task_list[i].tasks[j].isComplete === "true") {
             task_list[i].tasks[j].isComplete = "false";
            target.nextSibling.className = "tasks_strikeOut";  
-            break;
           } else {
             task_list[i].tasks[j].isComplete = "true";
-            document.getElementById(target.id).checked = false;
-            target.nextSibling.className = "tasks";
+           target.nextSibling.className = "tasks";
+           target.checked = false;
           }
         }
       }
@@ -242,34 +241,33 @@ document.getElementById("userTasks").addEventListener("click",function(event){
           target.className = "fa fa-star";
           addTask("Important",target.previousSibling.innerHTML,"true","true");
           flag =1;
+          break;
         }
       }
       if(flag == 1){
         break;
       }
     }
-  } else if(target.className ==  "fa fa-star" ){
-      let flag = 0;
-      for(i=0;i<task_list.length;i++){
-        for(j=0;j<task_list[i].tasks.length;j++) { 
-          if(target.previousSibling.innerHTML === task_list[i].tasks[j].taskName) {
-            // if(task_list.includes(target.previousSibling.innerHTML) && ){
-
-            // }
-           if(task_list[i].category == "Important") {
-              target.parentElement.remove();
-              task_list.splice(i,1);
+   }  else if(target.className ==  "fa fa-star" ){
+        for(i=0;i<task_list.length;i++){
+         if(task_list[i].category == "Important") {
+          for(j=0;j<task_list[i].tasks.length;j++) { 
+              if(target.previousSibling.innerHTML === task_list[i].tasks[j].taskName) {
+                target.parentElement.remove();
+                task_list[i].tasks.splice(j,1);
+              }
             }
-            task_list[i].tasks[j].isImportant = "false";
-            target.className = "far fa-star";
-            flag =1;
+          }
+          else{
+            for(j=0;j<task_list[i].tasks.length;j++) { 
+            if(target.previousSibling.innerHTML === task_list[i].tasks[j].taskName) {
+              task_list[i].tasks[j].isImportant = "false";
+              target.className = "far fa-star"; 
+            }
+          }
           }
         }
-        if(flag == 1){
-          break;
-        }
       }
-    }
   });
 }
 })();
