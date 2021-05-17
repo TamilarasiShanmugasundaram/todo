@@ -22,6 +22,13 @@ ul {
 li {
     list-style: none;
 }
+.new-step:focus {
+    outline: none;
+}
+.new-step{
+    border-style: none;
+    padding-left: 10px;
+}
 .newadd_icon {
 display: inline-block;
 }
@@ -34,6 +41,7 @@ display: inline-block;
     height: 7%;
     span {
         padding-left: 40px;
+        display: inline-block;
     }
     input:hover {
         background-color: white;
@@ -42,7 +50,7 @@ display: inline-block;
         outline: none;
     }
     input {
-        width:71%;
+        display: inline-block;
         border-style: none;
         height: 30px;
         padding-bottom: 10px;
@@ -91,6 +99,13 @@ display: inline-block;
     padding-top: 15px;
     display: inline-block;
 }
+.corner-container {
+    height:90vh;
+    white-space: normal;
+    display: inline-block;
+    width: 25%;
+    
+}
 .left-container {
     height:90vh;
     background-color:#F4F4F4;
@@ -99,13 +114,25 @@ display: inline-block;
     vertical-align: top;
     white-space: normal;
 }
+
 .right-container {
     height:90vh;
     white-space: normal;
     display: inline-block;
     width: 79%;
 }
-
+.cener {
+    width: 89%;
+    display: inline-block;
+    padding-left: 20px;
+}
+.right {
+    height:90vh;
+    vertical-align: top;
+    white-space: normal;
+    display: inline-block;
+    width: 54%;
+}
 .task {
  input {
      padding-top: 20px;
@@ -126,7 +153,6 @@ display: inline-block;
     border-style: none;
 }
 .imp-star {
-    
     display: inline-block;
 }
 .userTask {
@@ -139,14 +165,35 @@ display: inline-block;
 .checkbox{
     display:inline-block;
 }
+
+.d-task {
+    border: solid;
+    padding-top: 60%;
+}
 .tasks_strikeOut {
-    width:93%;
+    width:91%;
     display: inline-block;
-    padding-left: 20px;
+    padding-left: 10px;
     text-decoration: line-through;
 }
-.tasks {
-    width:93%;
+.step-strikeOut {
+    width:85%;
     display: inline-block;
-    padding-left: 20px;
+    padding-left: 10px;
+    text-decoration: line-through;
+}
+.step-title {
+    width:85%;
+    display: inline-block;
+    padding-left: 10px;
+}
+.new-step-name {
+   width:85%;
+   padding-left: 10px;
+   display: inline-flex;
+}
+.tasks {
+    width:91%;
+    display: inline-block;
+    padding-left: 10px;
 }
