@@ -1,27 +1,104 @@
-.header  {
-    background-color: #2596be;
-    height:50px;
-}
 .d-block {
     display: inline-block;
 }
-.app {
-    color: white;padding-left: 20px;padding-top: 15px;
-    display: inline-block;
-    width:30%;
+.border {
+    border-bottom: 1px solid;
+    border-bottom-color: lightslategray;
 }
-li:hover {
-    background-color: white;
-}
-ul {
-    padding: unset;
-    span {
-        padding-left: 40px;
+.header  {
+    background-color: #2596be;
+    height:50px;
+
+    .app {
+        color: white;padding-left: 20px;padding-top: 15px;
+        display: inline-block;
+        width:30%;
+    }
+    .todo {
+        color: white;
+        padding-left: 20px;
+        font-weight: bold;
+        font-family: sans-serif;
+    }
+    .d-input {
+        background-color: lightskyblue;
+        display: inline-block;
+        width:25%;
+        i {
+            color: white;
+            display: inline-block;
+            padding-left: 7px;
+        }
+    }
+    .input-field {
+        display: inline-block;
+        border:none;
+        height:25px;
+        background-color: lightskyblue;
+        width:90%;
+    }
+    .setting {
+        color: white;
+        padding-left: 35%;
+        padding-top: 15px;
+        display: inline-block;
+    }
+    .question {
+        color: white;
+        padding-left: 20px;
+        padding-top: 15px;
+        display: inline-block;
     }
 }
-li {
-    list-style: none;
+
+.left-container {
+    height:100vh;
+    background-color:#F4F4F4;
+    display: inline-block;
+    width: 20%;
+    vertical-align: top;
+    white-space: normal;
+
+    li:hover {
+        background-color: white;
+    }
+    ul {
+        padding: unset;
+        span {
+            padding-left: 40px;
+        }
+        li {
+            list-style: none;
+        }
+    }
+    .new:hover {
+        background-color: white;
+    }
+    .new {
+        width:90%;
+        display: inline-block;
+        height: 7%;
+        span {
+            padding-left: 40px;
+            display: inline-block;
+        }
+        input:hover {
+            background-color: white;
+        }
+        input:focus {
+            outline: none;
+        }
+        input {
+            display: inline-block;
+            border-style: none;
+            height: 30px;
+            padding-bottom: 10px;
+            background-color:#F4F4F4;
+            padding-left: 10px;
+        }
+    }    
 }
+
 .new-step:focus {
     outline: none;
 }
@@ -32,99 +109,58 @@ li {
 .newadd_icon {
 display: inline-block;
 }
-.new:hover {
-    background-color: white;
-}
-.new {
-    width:90%;
-    display: inline-block;
-    height: 7%;
-    span {
-        padding-left: 40px;
-        display: inline-block;
-    }
-    input:hover {
-        background-color: white;
-    }
-    input:focus {
-        outline: none;
-    }
-    input {
-        display: inline-block;
-        border-style: none;
-        height: 30px;
-        padding-bottom: 10px;
-        background-color:#F4F4F4;
-        padding-left: 10px;
-    }
-}
-
 .symbol {
     display: inline-block;
     padding-left: 20px;
+    font-family: sans-serif;
 }
-.todo {
-    color: white;
-    padding-left: 20px;
-    font-weight: bold;
-    
-}
-
-.d-input {
-    background-color: lightskyblue;
-    display: inline-block;
-    width:25%;
-    i {
-        color: white;
-        display: inline-block;
-        padding-left: 7px;
-    }
-}
-.input-field {
-    display: inline-block;
-    border:none;
-    height:25px;
-    background-color: lightskyblue;
-    width:90%;
-}
-.setting {
-    color: white;
-    padding-left: 35%;
-    padding-top: 15px;
-    display: inline-block;
-}
-.question {
-    color: white;
-    padding-left: 20px;
-    padding-top: 15px;
-    display: inline-block;
-}
-.corner-container {
-    height:90vh;
-    white-space: normal;
-    display: inline-block;
-    width: 25%;
-    
-}
-.left-container {
-    height:90vh;
-    background-color:#F4F4F4;
-    display: inline-block;
-    width: 20%;
-    vertical-align: top;
-    white-space: normal;
-}
-
 .right-container {
     height:90vh;
     white-space: normal;
     display: inline-block;
     width: 79%;
-}
-.cener {
-    width: 89%;
+
+    .task {
+        input {
+            padding-top: 20px;
+        }
+    }
+    .title {
+       font-size: 25PX;
+       color: blue;
+       font-family: sans-serif;
+    }
+    .i-add-task {
+       display: none;
+   }
+   .userTask {
+    li {
+        span {
+            color:skyblue;
+        }
+    }
+   }
+   .enable {
+        display: block;
+        display: inline-block;
+        padding-left: 20px;
+        outline: none;
+        border-style: none;
+    }
+    
+.tasks_strikeOut {
+    width:91%;
     display: inline-block;
-    padding-left: 20px;
+    padding-left: 10px;
+    text-decoration: line-through;
+    font-family: sans-serif;
+}
+.tasks {
+    width:91%;
+    display: inline-block;
+    padding-left: 10px;
+    font-family: sans-serif;
+}
 }
 .right {
     height:90vh;
@@ -133,67 +169,39 @@ display: inline-block;
     display: inline-block;
     width: 54%;
 }
-.task {
- input {
-     padding-top: 20px;
- }
-}
-.title {
-    font-size: 25PX;
-    color: blue;
-}
-.i-add-task {
-    display: none;
-}
-.enable {
-    display: block;
+
+.corner-container {
+    height:90vh;
+    white-space: normal;
     display: inline-block;
-    padding-left: 20px;
-    outline: none;
-    border-style: none;
-}
-.imp-star {
-    display: inline-block;
-}
-.userTask {
-    li {
-        span {
-            color:skyblue;
-        }
+    width: 25%;
+    
+    .cener {
+        width: 89%;
+        display: inline-block;
+        padding-left: 20px;
+    }
+    .d-task {
+        border: solid;
+        padding-top: 60%;
+    }
+    .step-strikeOut {
+        width:85%;
+        display: inline-block;
+        padding-left: 10px;
+        text-decoration: line-through;
+        font-family: sans-serif;
+    }
+    .step-title {
+        width:85%;
+        display: inline-block;
+        padding-left: 10px;
+        font-family: sans-serif;
+    }
+    .options {
+        font-family: sans-serif;
+        display: inline-block;
+        padding-left: 10px;
     }
 }
-.checkbox{
-    display:inline-block;
-}
 
-.d-task {
-    border: solid;
-    padding-top: 60%;
-}
-.tasks_strikeOut {
-    width:91%;
-    display: inline-block;
-    padding-left: 10px;
-    text-decoration: line-through;
-}
-.step-strikeOut {
-    width:85%;
-    display: inline-block;
-    padding-left: 10px;
-    text-decoration: line-through;
-}
-.step-title {
-    width:85%;
-    display: inline-block;
-    padding-left: 10px;
-}
-.new-step-name {
-   width:85%;
-   padding-left: 10px;
-   display: inline-flex;
-}
-.tasks {
-    width:91%;
-    display: inline-block;
-    padding-left: 10px;
-}
