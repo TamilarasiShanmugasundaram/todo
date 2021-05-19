@@ -1,10 +1,10 @@
 .d-block {
     display: inline-block;
 }
-.border {
-    border-bottom: 1px solid;
-    border-bottom-color: lightslategray;
-}
+// .border {
+//     border-bottom: 1px solid;
+//     border-bottom-color: lightslategray;
+// }
 .header  {
     background-color: #2596be;
     height:50px;
@@ -59,16 +59,19 @@
     vertical-align: top;
     white-space: normal;
 
-    li:hover {
-        background-color: white;
-    }
+
     ul {
-        padding: unset;
-        span {
-            padding-left: 40px;
-        }
+        padding: 0;
+       li:hover {
+        background-color: white;
+    }    
         li {
+            height: 9vh;
             list-style: none;
+            padding-left: 40px;
+           span {
+               padding-top: 20px;
+           }
         }
     }
     .new:hover {
@@ -102,7 +105,7 @@
 .new-step:focus {
     outline: none;
 }
-.new-step{
+.new-step {
     border-style: none;
     padding-left: 10px;
 }
@@ -119,7 +122,7 @@ display: inline-block;
     white-space: normal;
     display: inline-block;
     width: 79%;
-
+}
     .task {
         input {
             padding-top: 20px;
@@ -133,35 +136,42 @@ display: inline-block;
     .i-add-task {
        display: none;
    }
-   .userTask {
-    li {
-        span {
-            color:skyblue;
+   .user-tasks {
+        li {
+            border-bottom: 1px solid;
+            border-bottom-color: lightslategray;
+            list-style: none;
+            height: 7vh;
+            span {
+                padding-top: 15px;
+            }
+            i {
+                color:skyblue;
+            }
         }
-    }
    }
    .enable {
-        display: block;
-        display: inline-block;
-        padding-left: 20px;
-        outline: none;
-        border-style: none;
-    }
+    display: block;
+    display: inline-block;
+    padding-left: 20px;
+    outline: none;
+    border-style: none;
+}
     
-.tasks_strikeOut {
-    width:91%;
+.tasks-strikeOut {
+    width:90%;
     display: inline-block;
     padding-left: 10px;
     text-decoration: line-through;
     font-family: sans-serif;
 }
 .tasks {
-    width:91%;
+    width:90%;
     display: inline-block;
     padding-left: 10px;
     font-family: sans-serif;
 }
-}
+
 .right {
     height:90vh;
     vertical-align: top;
@@ -175,12 +185,8 @@ display: inline-block;
     white-space: normal;
     display: inline-block;
     width: 25%;
-    
-    .cener {
-        width: 89%;
-        display: inline-block;
-        padding-left: 20px;
-    }
+}
+
     .d-task {
         border: solid;
         padding-top: 60%;
@@ -203,5 +209,14 @@ display: inline-block;
         display: inline-block;
         padding-left: 10px;
     }
+    .user-options {
+        li {
+            list-style: none;
+        }
+    }
+    .user-step {
+        li {
+            list-style: none;
+        }
 }
 
