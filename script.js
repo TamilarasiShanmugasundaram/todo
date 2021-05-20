@@ -10,17 +10,17 @@
 
   init();
 
-    /**
-     * To call details when page is loaded initially
-     */
+  /**
+   * To call details when page is loaded initially
+   */
   function init() {
     initialRender();  
   }
 
   
-    /**
-     * To render details for initial page load
-     */
+  /**
+   * To render details for initial page load
+   */
   function initialRender() {
     let plusIcon = document.getElementById("plus");
     plusIcon.innerHTML = "&#xf067"; 
@@ -164,7 +164,7 @@
             let paragraph = document.createElement("span");
             input.type = "radio";
             paragraph.id = "task-name";
-            input.className = "d-block";
+            //input.className = "d-block";
             if(category == "Important"){
               star.className = "fa fa-star";
             value = addTask(category, text, "true", "true");
@@ -177,8 +177,8 @@
             li.appendChild(input);
             li.appendChild(paragraph);
             li.appendChild(star);
-            paragraph.className = "tasks";
-            li.className = "border";
+            //paragraph.className = "tasks";
+            li.className = "style-for-task";
           }
         }
       }
@@ -215,40 +215,66 @@ function addTask(categories, Usertask, complete, important) {
    return Usertask;
  }
 
-   /**
-   * Bind function when user click on user task list
-   */
-document.getElementById("user-tasks").addEventListener("click", function(event){
+
+ function isComplete(task) {
+  
+  for(i = 0; i < taskList.length; i++){
+    for(j = 0; j < taskList[i].tasks.length; j++) {
+      if(task === taskList[i].tasks[j].taskName) {
+        if(taskList[i].tasks[j].isComplete === "true") {
+          taskList[i].tasks[j].isComplete = "false";
+          return  true;
+        } else {
+          taskList[i].tasks[j].isComplete = "true";
+            return false;
+        }
+      }
+    }
+  }
+}
+
+function isImportant(task) {
+  for(i = 0; i < taskList.length; i++){
+    for(j = 0; j < taskList[i].tasks.length; j++) {
+      if(task === taskList[i].tasks[j].taskName){
+        if(taskList[i].tasks[j].isImportant === "true") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Bind function when user click on user task list
+ */
+document.getElementById("user-tasks").addEventListener("click", function(event) {
   var target = event.target;
   if(target.tagName == "SPAN" || target.tagName == "LI") {
     renderCornerContainer(target); 
   } 
   if(target.type === "radio") {
-    for(i = 0; i < taskList.length; i++){
-      for(j = 0; j < taskList[i].tasks.length; j++) {
-        if(target.nextSibling.innerHTML === taskList[i].tasks[j].taskName) {
-          if(taskList[i].tasks[j].isComplete === "true") {
-            target.checked = true;
-            taskList[i].tasks[j].isComplete = "false";
-           target.nextSibling.className = "tasks-strikeOut";  
-          } else {
-            taskList[i].tasks[j].isComplete = "true";
-            target.nextSibling.className = "tasks";
-            target.checked = false;
-          }
-        }
-      }
+    if(isComplete(target.nextSibling.innerHTML)) {
+      target.nextSibling.className = "tasks-strikeOut";  
+    } else {
+      target.nextSibling.className = "tasks";      
+      target.checked = false;
     }
     renderCornerContainer(target.nextSibling);
   }
   if(target.className ===  "far fa-star") {
     let flag = 0;
-    for(i = 0; i < taskList.length; i++){
-     for(j = 0; j < taskList[i].tasks.length; j++) {   
+    for(i = 0; i < taskList.length; i++) {
+      for(j = 0; j < taskList[i].tasks.length; j++) {   
         if(target.previousSibling.innerHTML === taskList[i].tasks[j].taskName) {
           taskList[i].tasks[j].isImportant = "true";
           target.className = "fa fa-star";
-          addTask("Important", target.previousSibling.innerHTML, "true", "true");
+          let boolean = checkContainsInList(target.previousSibling.innerHTML);
+          if(boolean == true) {
+            addTask("Important", target.previousSibling.innerHTML, "true", "true");
+          }
           flag = 1;
           break;
         }
@@ -258,25 +284,34 @@ document.getElementById("user-tasks").addEventListener("click", function(event){
       }
     }
     renderCornerContainer(target.previousSibling);
-   }  else if(target.className ===  "fa fa-star" ){
-        for(i = 0; i < taskList.length; i++){
-         if(taskList[i].category === "Important") {
-          for(j = 0; j < taskList[i].tasks.length; j++) { 
-              if(target.previousSibling.innerHTML === taskList[i].tasks[j].taskName) {
-                taskList[i].tasks.splice(j, 1);
-              }
-            }
-          } else{
-            for(j = 0; j < taskList[i].tasks.length; j++) { 
-              if(target.previousSibling.innerHTML === taskList[i].tasks[j].taskName) {
-                taskList[i].tasks[j].isImportant = "false";
-                target.className = "far fa-star"; 
-              }
-            }
+  }  else if(target.className ===  "fa fa-star" ) {
+    let flag =0;
+    for(i = 0; i < taskList.length; i++){
+      let taskTitle = document.getElementById("task-titless");
+      if(taskList[i].category === "Important") {
+        for(j = 0; j < taskList[i].tasks.length; j++) { 
+          if(target.previousSibling.innerHTML === taskList[i].tasks[j].taskName) {
+            target.parentNode.remove();
+            taskList[i].tasks.splice(j, 1);
           }
         }
-        renderCornerContainer(target.previousSibling);
+      } else{
+        checkContainsInList(target.previousSibling.innerHTML);
+        for(j = 0; j < taskList[i].tasks.length; j++) { 
+          if(target.previousSibling.innerHTML === taskList[i].tasks[j].taskName) {
+            taskList[i].tasks[j].isImportant = "false";
+            target.className = "far fa-star"; 
+            flag = 1;
+            break;
+          }
+        }
+        if(flag === 1){
+          break;
+        }
       }
+    }
+      renderCornerContainer(target.previousSibling);
+    }
   });
 
   /**
@@ -287,35 +322,33 @@ document.getElementById("user-tasks").addEventListener("click", function(event){
     document.getElementById("user-step").innerHTML = "";
     let rightContainer = document.getElementById("right-container");
     rightContainer.className = "right";
-    let parent = document.getElementById("user-step");
-    let li = document.createElement("div");
-    let input = document.createElement("input");
-    let paragraph = document.createElement("span");
-    let star = document.createElement("icon");
-    input.type ="radio";
-    paragraph.id  = "tast-title";
-    paragraph.innerHTML = target.innerHTML;
-    if(target.className === "tasks-strikeOut") {
+    let input = document.getElementById("title-checkbox");
+    let taskTitle = document.getElementById("task-titless");
+    let star = document.getElementById("task-star");
+    taskTitle.innerHTML = target.innerHTML;
+    if(target.previousSibling.checked) {
       input.checked = true;
-      paragraph.className = "step-strikeOut";
-    } else {
-      paragraph.className = "step-title";
-    }
-    star.className =  target.nextSibling.className;
-    parent.appendChild(li);
-    li.appendChild(input);
-    li.appendChild(paragraph);
-    li.appendChild(star);
+      taskTitle.className = "step-strikeOut";
+     } else {
+      input.checked = false;
+      taskTitle.className = "step";
+     }
+     if(isImportant(target.innerHTML)) {
+      star.className = "fa fa-star"; 
+     } else  {
+      star.className = "far fa-star"; 
+     }
     let plus = document.getElementById("plus-step");
     plus.innerHTML = "&#xf067"; 
-    renderSteps(target,parent);
-    renderUserOptions();
-} 
+    renderSteps(target);
+    document.getElementById("corner-container").className = "corner";
+  } 
 
   /**
    * To render steps
    */ 
-  function renderSteps(target, parent) {
+  function renderSteps(target) {
+    let parent = document.getElementById("user-step");
     for(i = 0; i < stepList.length; i++) {
       if(stepList[i].taskName == target.innerHTML) {
         for(j = 0; j < stepList[i].stepName.length; j++){
@@ -331,30 +364,10 @@ document.getElementById("user-tasks").addEventListener("click", function(event){
           list.appendChild(name);
           list.appendChild(close);
           document.getElementById("new-step").value = "";
-          name.className = "step-title";
-          list.className = "border";
+          //name.className = "step-title";
+          //name.className = "user-tasks-center";
         }
       }
-    }
-  }
-  
-  /**
-   * To render user default option 
-   */ 
-  function renderUserOptions() {
-    let parentNode = document.getElementById("user-options");
-    for(i = 0; i < staticList.length; i++) {
-      let l = document.createElement("li");
-      let p = document.createElement("span");
-      let symbol = document.createElement("icon");
-      symbol.innerHTML = symbols[i];
-      symbol.className = "fa";
-      p.innerHTML = staticList[i];
-      parentNode.appendChild(l);
-      l.appendChild(symbol);
-      l.appendChild(p);
-      l.className = "border";
-      p.className=  "options";
     }
   }
 
@@ -367,24 +380,25 @@ document.getElementById("user-tasks").addEventListener("click", function(event){
    * To add new step
    */ 
   function addStep(event) {
-    let taskTitle = document.getElementById("tast-title");
+    let taskTitle = document.getElementById("task-titless");
     if(event.code === "Enter") {
-      let parent = document.getElementById("user-step");
-      let value = addStepInList(taskTitle.innerHTML, event.target.value);
+      let text = event.target.value;
+      if(text != "") {
+        let parent = document.getElementById("user-step");
+        let value = addStepInList(taskTitle.innerHTML, event.target.value);
         let li = document.createElement("li");
         let circle = document.createElement("input");
         let name = document.createElement("span");
         let close = document.createElement("icon");
         circle.type = "radio";
         name.innerHTML = value;
-        name.className = "step-title";
         close.className = "fas fa-times";
         parent.appendChild(li);
         li.appendChild(circle);
         li.appendChild(name);
         li.appendChild(close);
-        li.className = "border";
         document.getElementById("new-step").value = "";
+      }
     }
   }
 
@@ -413,46 +427,68 @@ document.getElementById("user-tasks").addEventListener("click", function(event){
   /**
    * To bind when click on step title
    */ 
-    document.getElementById("user-step").addEventListener("click", bindUserStep);
+    document.getElementById("task-title-In-step").addEventListener("click", bindUserStep);
 
   /**
    * To process when click on step title
    */ 
     function bindUserStep(event) {
       target = event.target;      
-      if(target.parentNode.tagName === "DIV") {       
+      if(target.parentNode.tagName === "DIV") {    
         if(target.tagName === "INPUT") {
+          let taskname = document.getElementById("task-titless");
           for(i = 0; i < taskList.length; i++){
             for(j = 0; j < taskList[i].tasks.length; j++){
-              if(taskList[i].tasks[j].taskName === target.nextSibling.innerHTML && taskList[i].tasks[j].isComplete === "false") {
-                target.checked = false;
-                target.nextSibling.className = "step-title";
-                taskList[i].tasks[j].isComplete = "true";
-                renderTasks(taskList[i].category);
-               } else {
-                target.nextSibling.className = "step-strikeOut";
-                taskList[i].tasks[j].isComplete = "false";
-                renderTasks(taskList[i].category);
+              if(taskList[i].tasks[j].taskName === taskname.innerHTML){ 
+                if(taskList[i].tasks[j].isComplete === "false") {
+                  target.checked = false;
+                  taskname.className = "step";
+                  taskList[i].tasks[j].isComplete = "true";
+                  renderTasks(taskList[i].category);
+                 } else {
+                  taskname.className = "step-strikeOut";
+                  taskList[i].tasks[j].isComplete = "false";
+                  renderTasks(taskList[i].category);
+                }
               }
             }
           }
         }
-        if(target.tagName === "ICON") {
+        if(target.tagName === "I") {
+          let taskname = document.getElementById("task-titless");
           for(i = 0; i < taskList.length; i++){
             for(j = 0; j < taskList[i].tasks.length; j++){
-               if(taskList[i].tasks[j].taskName === target.previousSibling.innerHTML && taskList[i].tasks[j].isImportant === "false") {
-                  target.className = "fa fa-star"; 
-                  taskList[i].tasks[j].isImportant = "true";
-                  renderTasks(taskList[i].category);
-                } else {            
-                  target.className = "far fa-star"; 
-                  taskList[i].tasks[j].isImportant = "false";
-                  renderTasks(taskList[i].category);
+               if(taskList[i].tasks[j].taskName === taskname.innerHTML) {
+                 if(taskList[i].tasks[j].isImportant === "false") {
+                    target.className = "fa fa-star"; 
+                    taskList[i].tasks[j].isImportant = "true";
+                    renderTasks(taskList[i].category);
+                  } else {            
+                    target.className = "far fa-star"; 
+                    taskList[i].tasks[j].isImportant = "false";
+                    renderTasks(taskList[i].category);
+                }
               }
             }
           }
         }
       }
     }
-    
+
+  /**
+   * To remove task in importany category
+   */ 
+    function checkContainsInList(task) {
+      let boolean = true;
+      for(k = 0; k < taskList.length; k++){
+        for(l = 0; l < taskList[k].tasks.length; l++) {   
+          if(taskList[k].category === "Important") {
+            if(taskList[k].tasks[l].taskName ===  task) {
+              boolean = false;
+              taskList[k].tasks.splice(l, 1);
+            }
+          }
+        }}
+        return boolean;
+    }
 })();

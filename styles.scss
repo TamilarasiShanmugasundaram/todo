@@ -1,10 +1,32 @@
 .d-block {
     display: inline-block;
 }
-// .border {
-//     border-bottom: 1px solid;
-//     border-bottom-color: lightslategray;
+.tasks-strikeOut {
+    width:90%;
+    display: inline-block;
+    padding-left: 10px;
+    text-decoration: line-through;
+    font-family: sans-serif;
+}
+// .tasks {
+//     width:50%;
+//     display: inline-block;
+//     padding-left: 10px;
+//     font-family: sans-serif;
 // }
+.step {
+    width:80%;
+    display: inline-block;
+    padding-left: 10px;
+    font-family: sans-serif;  
+}
+.step-strikeOut {
+    text-decoration: line-through;
+    width:80%;
+    display: inline-block;
+    padding-left: 10px;
+    font-family: sans-serif;  
+}
 .header  {
     background-color: #2596be;
     height:50px;
@@ -99,124 +121,188 @@
             background-color:#F4F4F4;
             padding-left: 10px;
         }
-    }    
+    } 
+    .symbol {
+        display: inline-block;
+        padding-left: 20px;
+        font-family: sans-serif;
+    }   
 }
 
-.new-step:focus {
-    outline: none;
-}
-.new-step {
-    border-style: none;
-    padding-left: 10px;
-}
-.newadd_icon {
-display: inline-block;
-}
-.symbol {
-    display: inline-block;
-    padding-left: 20px;
-    font-family: sans-serif;
-}
-.right-container {
-    height:90vh;
-    white-space: normal;
-    display: inline-block;
-    width: 79%;
-}
-    .task {
-        input {
-            padding-top: 20px;
-        }
-    }
-    .title {
-       font-size: 25PX;
-       color: blue;
-       font-family: sans-serif;
-    }
-    .i-add-task {
-       display: none;
-   }
-   .user-tasks {
-        li {
-            border-bottom: 1px solid;
-            border-bottom-color: lightslategray;
-            list-style: none;
-            height: 7vh;
-            span {
-                padding-top: 15px;
-            }
-            i {
-                color:skyblue;
-            }
-        }
-   }
-   .enable {
+.enable {
     display: block;
     display: inline-block;
     padding-left: 20px;
     outline: none;
     border-style: none;
 }
-    
-.tasks-strikeOut {
-    width:90%;
-    display: inline-block;
-    padding-left: 10px;
-    text-decoration: line-through;
-    font-family: sans-serif;
-}
-.tasks {
-    width:90%;
-    display: inline-block;
-    padding-left: 10px;
-    font-family: sans-serif;
-}
-
 .right {
-    height:90vh;
     vertical-align: top;
     white-space: normal;
     display: inline-block;
     width: 54%;
+    .user-tasks {
+        li {
+            span {
+                width:92%;
+            }
+        }
+   }
 }
 
-.corner-container {
-    height:90vh;
+.right-container {
     white-space: normal;
     display: inline-block;
+    width: 79%;
+}
+.task {
+    input {
+        padding-top: 20px;
+    }
+}
+.title {
+    font-size: 25PX;
+    color: blue;
+    font-family: sans-serif;
+}
+    .i-add-task {
+       display: none;
+   }
+//    .user-tasks {
+//         li {
+//             border-bottom: 1px solid;
+//             border-bottom-color: lightslategray;
+//             list-style: none;
+//             height: 7vh;
+//             span {
+//                 padding-top: 15px;
+//                 //border: solid;
+//                 width:95%;
+//             }
+//             i {
+//                 color:skyblue;
+//             }
+//         }
+//    }
+   
+
+.corner-container {
+    display: none;
+}
+.corner {
+    height:100vh;
+    white-space: normal;
+    background-color:#F4F4F4;
+    display: inline-block;
     width: 25%;
-}
+    li {
+        list-style: none;
+    }
+    .task-title-In-step {
+        padding-top: 10px;
+        span {
+           width: 80%;
+           display: inline-block;
+    font-family: sans-serif;
+            padding-left: 10px;
+        }
 
-    .d-task {
-        border: solid;
-        padding-top: 60%;
     }
-    .step-strikeOut {
-        width:85%;
-        display: inline-block;
-        padding-left: 10px;
-        text-decoration: line-through;
-        font-family: sans-serif;
-    }
-    .step-title {
-        width:85%;
-        display: inline-block;
-        padding-left: 10px;
-        font-family: sans-serif;
-    }
-    .options {
-        font-family: sans-serif;
-        display: inline-block;
-        padding-left: 10px;
-    }
-    .user-options {
-        li {
-            list-style: none;
+    .static-options {
+        height: 27vh;
+        width:93%;
+        margin-left: 10px;
+        margin-top: 20px;
+        background-color: white; 
+        span {
+           padding-right: 56%;
+        padding-bottom: 15px;
+           margin-left: 20px;
+            border-bottom: 1px solid;
+            border-bottom-color: lightslategray; 
+            
+        }
+        i {
+            padding-left: 10px;
+            padding-top: 25px;
+        }    
+}
+.empty-file {
+    height: 10vh;
+    width:92%;
+    margin-left: 10px;
+    margin-top: 20px;
+    background-color: white;
+}
+    .my-day-static {
+        height: 7vh;
+        width:92%;
+        margin-left: 10px;
+        margin-top: 20px;
+        background-color: white;
+        i {
+            padding-top: 13px;
+            padding-left: 10px;
+        }
+        span {
+            padding-left: 15px;
         }
     }
+.top-div-In-corner {
+    background-color: white;
+    width:92%;
+    margin-left: 10px;
+    margin-top: 10px;
+
+}
+    
+
+
     .user-step {
-        li {
-            list-style: none;
-        }
-}
 
+        li {
+           
+            height: 8vh;
+        
+        span {
+            border-bottom: 1px solid;
+            border-bottom-color: lightslategray;
+            padding-bottom: 18px;
+            width:83%;
+            display: inline-block;
+            padding-left: 10px;
+            font-family: sans-serif;
+            padding-top: 15px;
+        }
+    }
+    }
+}
+.new-step {
+    span {
+        padding-left: 5px;
+    }
+    input:focus {
+       outline: none;
+    }
+    input {
+        background-color: white;
+        border-style: none;
+        padding-left: 10px;
+        height: 5vh;
+    }
+}
+.style-for-task {
+    list-style: none; 
+    input {
+        display: inline-block;
+    }
+    span {
+        width:95%;
+        display: inline-block;
+        padding-left: 10px;
+        font-family: sans-serif;   
+    }
+    i {
+        background-color: skyblue !important;
+    }
+}

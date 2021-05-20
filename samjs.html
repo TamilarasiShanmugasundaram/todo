@@ -32,7 +32,7 @@
       <span id="plus" class="fa"></span>
       <input  type ="text" id="new-category"  placeholder="New list"></input>
     </div >
-    <div class="newadd_icon"><span id="new-list" class="fa"></span></div>
+    <div class="d-block"><span id="new-list" class="fa"></span></div>
   </div>
   <div class="right-container" id="right-container">
     <div class="task" id="task">
@@ -42,13 +42,59 @@
       <p class= "user-tasks" id="user-tasks"></p>   
     </div>
     </div>
-    <div class="corner-container">
-      <p class= "user-step" id="user-step"></p>
-      <div class="new-step">
-        <span id="plus-step" class="fa"></span>
-        <input class= "new-step" type ="text" id="new-step"  placeholder="Add step"></input>
-      </div > 
-      <p class= "user-options" id="user-options"></p>
+    <div class="corner-container" id="corner-container">
+      
+   
+
+
+      <div class="top-div-In-corner" id="top-div-In-corner">
+        <div class =  "task-title-In-step" id="task-title-In-step">
+          <input type="radio" id="title-checkbox" />
+          <span id="task-titless">  </span>
+          <i id="task-star"> </i>
+        </div>
+        <p class = "user-step" id="user-step"></p>
+        <div class="new-step">
+          <span id="plus-step" class="fa"></span>
+          <input type ="text" id="new-step"  placeholder="Add step"></input>
+        </div> 
+      </div>
+
+
+
+
+
+    
+      <div class= "user-options" id="user-options"></div>
+      <div class="my-day-static">
+        <i class="fa fa-sun"></i>
+        <span>Add to My day</span>
+      </div>
+      <div class="static-options">
+        <div>
+        <i class="fa fa-bell"></i>
+        <span>Remind  Me</span><br>
+      </div>
+    <div >
+        <i class="far fa-calendar-alt" style="padding-top: 30px;"></i>
+        <span>Add due date</span><br>
+      </div>
+      <div>
+        <i class="fas fa-redo-alt" style="padding-top: 40px;"></i>
+        <span style="border-bottom-style:none ;padding-bottom: 10px;" >Repeat</span>
+      </div>
+    </div>
+      <div class="my-day-static">
+        <i class="fas fa-tag"></i>
+        <span>Pick a category</span>
+      </div>
+      <div class="my-day-static">
+        <i class="fas fa-paperclip"></i>
+        <span>Add file</span>
+      </div>
+      <div class="empty-file">
+
+      </div>
     </div>
 </div>
 <script src='script.js'></script>
