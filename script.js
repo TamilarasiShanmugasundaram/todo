@@ -76,7 +76,12 @@
   /**
    * To bind which categoty is clicked by user
    */
-  document.getElementById("user-category").addEventListener("click", function(event) {
+  document.getElementById("user-category").addEventListener("click", renderRightSide); 
+
+  /**
+   * To render right side 
+   */
+  function renderRightSide(event) {
     var tag = event.target;
     if(tag.tagName === "ICON") {
       var tag = tag.nextSibling;
@@ -84,13 +89,7 @@
     if(tag.tagName === "LI") {
       var tag = tag.childNodes[1];
     }
-    renderRightSide(tag.innerHTML);
-  });
-
-  /**
-   * To render right side 
-   */
-  function renderRightSide(category) {
+    let category = tag.innerHTML;
     let title = document.getElementById("title");
     title.innerHTML = category +"      ...";
     let plus = document.getElementById("icon");
@@ -134,7 +133,7 @@
           li.appendChild(input);
           li.appendChild(taskname);
           li.appendChild(star);
-          li.className = "border";
+          li.className = "style-for-task";
         }
       }         
     }
@@ -364,8 +363,6 @@ document.getElementById("user-tasks").addEventListener("click", function(event) 
           list.appendChild(name);
           list.appendChild(close);
           document.getElementById("new-step").value = "";
-          //name.className = "step-title";
-          //name.className = "user-tasks-center";
         }
       }
     }
@@ -488,7 +485,8 @@ document.getElementById("user-tasks").addEventListener("click", function(event) 
               taskList[k].tasks.splice(l, 1);
             }
           }
-        }}
-        return boolean;
+        }
+      }
+      return boolean;
     }
 })();

@@ -1,53 +1,40 @@
+:root {
+	--white: white;
+	--lightslategray: lightslategray;
+    --blue: blue;
+    --header-background: #2596be;
+    --skyblue: lightskyblue;
+    --container-background: #F4F4F4;
+}
+
+
 .d-block {
     display: inline-block;
 }
-.tasks-strikeOut {
-    width:90%;
-    display: inline-block;
-    padding-left: 10px;
-    text-decoration: line-through;
-    font-family: sans-serif;
-}
-// .tasks {
-//     width:50%;
-//     display: inline-block;
-//     padding-left: 10px;
-//     font-family: sans-serif;
-// }
-.step {
-    width:80%;
-    display: inline-block;
-    padding-left: 10px;
-    font-family: sans-serif;  
-}
-.step-strikeOut {
-    text-decoration: line-through;
-    width:80%;
-    display: inline-block;
-    padding-left: 10px;
-    font-family: sans-serif;  
-}
+
 .header  {
-    background-color: #2596be;
+    background-color: var(--header-background);
     height:50px;
 
     .app {
-        color: white;padding-left: 20px;padding-top: 15px;
+        color: var(--white);
+        padding-left: 20px;
+        padding-top: 15px;
         display: inline-block;
         width:30%;
     }
     .todo {
-        color: white;
+        color: var(--white);
         padding-left: 20px;
         font-weight: bold;
         font-family: sans-serif;
     }
     .d-input {
-        background-color: lightskyblue;
+        background-color: var(--skyblue);
         display: inline-block;
         width:25%;
         i {
-            color: white;
+            color: var(--white);
             display: inline-block;
             padding-left: 7px;
         }
@@ -56,17 +43,17 @@
         display: inline-block;
         border:none;
         height:25px;
-        background-color: lightskyblue;
+        background-color: var(--lightskyblue);
         width:90%;
     }
     .setting {
-        color: white;
+        color: var(--white);
         padding-left: 35%;
         padding-top: 15px;
         display: inline-block;
     }
     .question {
-        color: white;
+        color: var(--white);
         padding-left: 20px;
         padding-top: 15px;
         display: inline-block;
@@ -75,7 +62,7 @@
 
 .left-container {
     height:100vh;
-    background-color:#F4F4F4;
+    background-color:var(--container-background);
     display: inline-block;
     width: 20%;
     vertical-align: top;
@@ -85,7 +72,7 @@
     ul {
         padding: 0;
        li:hover {
-        background-color: white;
+        background-color: var(--white);
     }    
         li {
             height: 9vh;
@@ -97,7 +84,7 @@
         }
     }
     .new:hover {
-        background-color: white;
+        background-color: var(--white);
     }
     .new {
         width:90%;
@@ -108,7 +95,7 @@
             display: inline-block;
         }
         input:hover {
-            background-color: white;
+            background-color: var(--white);
         }
         input:focus {
             outline: none;
@@ -118,7 +105,7 @@
             border-style: none;
             height: 30px;
             padding-bottom: 10px;
-            background-color:#F4F4F4;
+            background-color:var(--container-background);
             padding-left: 10px;
         }
     } 
@@ -136,6 +123,7 @@
     outline: none;
     border-style: none;
 }
+
 .right {
     vertical-align: top;
     white-space: normal;
@@ -147,7 +135,7 @@
                 width:92%;
             }
         }
-   }
+    }
 }
 
 .right-container {
@@ -155,36 +143,55 @@
     display: inline-block;
     width: 79%;
 }
+
 .task {
     input {
         padding-top: 20px;
     }
 }
+
 .title {
     font-size: 25PX;
-    color: blue;
+    color: var(--blue);
     font-family: sans-serif;
 }
-    .i-add-task {
-       display: none;
-   }
-//    .user-tasks {
-//         li {
-//             border-bottom: 1px solid;
-//             border-bottom-color: lightslategray;
-//             list-style: none;
-//             height: 7vh;
-//             span {
-//                 padding-top: 15px;
-//                 //border: solid;
-//                 width:95%;
-//             }
-//             i {
-//                 color:skyblue;
-//             }
-//         }
-//    }
-   
+.i-add-task {
+   display: none;
+}
+.style-for-task {
+    list-style: none; 
+    border-bottom: 1px solid;
+    border-bottom-color: var(--lightslategray);
+    height: 7vh;
+
+    input {
+        display: inline-block;
+    }
+    span {
+        width:95%;
+        display: inline-block;
+        padding-left: 10px;
+        font-family: sans-serif; 
+        padding-top: 15px;  
+    }
+    .fa-star {
+        color:var(--skyblue);
+    }
+}
+.tasks-strikeOut {
+    width:90%;
+    display: inline-block;
+    padding-left: 10px;
+    text-decoration: line-through;
+    font-family: sans-serif;
+}
+.step-strikeOut {
+    text-decoration: line-through;
+    width:80%;
+    display: inline-block;
+    padding-left: 10px;
+    font-family: sans-serif;  
+}
 
 .corner-container {
     display: none;
@@ -192,54 +199,84 @@
 .corner {
     height:100vh;
     white-space: normal;
-    background-color:#F4F4F4;
+    background-color:var(--container-background);
     display: inline-block;
     width: 25%;
     li {
         list-style: none;
+    }
+    .top-div-In-corner {
+        background-color: var(--white);
+        width:92%;
+        margin-left: 10px;
+        margin-top: 10px;
     }
     .task-title-In-step {
         padding-top: 10px;
         span {
            width: 80%;
            display: inline-block;
-    font-family: sans-serif;
+            font-family: sans-serif;
             padding-left: 10px;
         }
-
+        .fa-star {
+            color:var(--skyblue);
+        }
+    }
+    .user-step {
+        li {
+            height: 8vh;
+            span {
+                border-bottom: 1px solid;
+                border-bottom-color: var(--lightslategray);
+                padding-bottom: 18px;
+                width:83%;
+                display: inline-block;
+                padding-left: 10px;
+                font-family: sans-serif;
+                padding-top: 15px;
+            }
+        }
+    }
+    .new-step {
+        span {
+            padding-left: 5px;
+        }
+        input:focus {
+           outline: none;
+        }
+        input {
+            background-color: var(--white);
+            border-style: none;
+            padding-left: 10px;
+            height: 5vh;
+        }
     }
     .static-options {
         height: 27vh;
         width:93%;
         margin-left: 10px;
         margin-top: 20px;
-        background-color: white; 
+        background-color: var(--white); 
         span {
            padding-right: 56%;
         padding-bottom: 15px;
            margin-left: 20px;
             border-bottom: 1px solid;
-            border-bottom-color: lightslategray; 
+            border-bottom-color: var(--lightslategray); 
             
         }
         i {
             padding-left: 10px;
             padding-top: 25px;
         }    
-}
-.empty-file {
-    height: 10vh;
-    width:92%;
-    margin-left: 10px;
-    margin-top: 20px;
-    background-color: white;
-}
+    }
     .my-day-static {
         height: 7vh;
         width:92%;
         margin-left: 10px;
         margin-top: 20px;
-        background-color: white;
+        background-color: var(--white);
         i {
             padding-top: 13px;
             padding-left: 10px;
@@ -248,61 +285,14 @@
             padding-left: 15px;
         }
     }
-.top-div-In-corner {
-    background-color: white;
-    width:92%;
-    margin-left: 10px;
-    margin-top: 10px;
-
-}
-    
-
-
-    .user-step {
-
-        li {
-           
-            height: 8vh;
-        
-        span {
-            border-bottom: 1px solid;
-            border-bottom-color: lightslategray;
-            padding-bottom: 18px;
-            width:83%;
-            display: inline-block;
-            padding-left: 10px;
-            font-family: sans-serif;
-            padding-top: 15px;
-        }
+    .empty-file {
+        height: 10vh;
+        width:92%;
+        margin-left: 10px;
+        margin-top: 20px;
+        background-color: var(--white);
     }
-    }
-}
-.new-step {
-    span {
-        padding-left: 5px;
-    }
-    input:focus {
-       outline: none;
-    }
-    input {
-        background-color: white;
-        border-style: none;
-        padding-left: 10px;
-        height: 5vh;
-    }
-}
-.style-for-task {
-    list-style: none; 
-    input {
-        display: inline-block;
-    }
-    span {
-        width:95%;
-        display: inline-block;
-        padding-left: 10px;
-        font-family: sans-serif;   
-    }
-    i {
-        background-color: skyblue !important;
+    .task-star {
+        color: var(--skyblue);
     }
 }
