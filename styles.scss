@@ -61,7 +61,7 @@
 }
 
 .left-container {
-    height:100vh;
+    height:92vh;
     background-color:var(--container-background);
     display: inline-block;
     width: 20%;
@@ -196,8 +196,10 @@
 .corner-container {
     display: none;
 }
+
 .corner {
-    height:100vh;
+    overflow-y: auto;
+    height:92vh;
     white-space: normal;
     background-color:var(--container-background);
     display: inline-block;
@@ -259,9 +261,10 @@
         margin-top: 20px;
         background-color: var(--white); 
         span {
-           padding-right: 56%;
-        padding-bottom: 15px;
-           margin-left: 20px;
+            padding-right: 50%;
+            padding-bottom: 15px;
+            font-family: sans-serif;
+            margin-left: 20px;
             border-bottom: 1px solid;
             border-bottom-color: var(--lightslategray); 
             
@@ -282,6 +285,7 @@
             padding-left: 10px;
         }
         span {
+            font-family: sans-serif;
             padding-left: 15px;
         }
     }

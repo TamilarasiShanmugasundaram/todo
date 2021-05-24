@@ -17,7 +17,6 @@
     initialRender();  
   }
 
-  
   /**
    * To render details for initial page load
    */
@@ -79,7 +78,9 @@
   document.getElementById("user-category").addEventListener("click", renderRightSide); 
 
   /**
-   * To render right side 
+   * To render right side
+   * @param task
+   *        provide the event  
    */
   function renderRightSide(event) {
     var tag = event.target;
@@ -101,13 +102,15 @@
   }
 
   /**
-   * To render tasks 
+   * To render tasks
+   * @param category
+   *        provide the category name   
    */
-  function renderTasks(tag) {
+  function renderTasks(category) {
     document.getElementById("user-tasks").innerHTML = "";
     if(taskList.length > 0){
     for(i = 0; i < taskList.length; i++) {
-      if(taskList[i].category === tag) {
+      if(taskList[i].category === category) {
         document.getElementById("new-task").value = "";
         let parent = document.getElementById("user-tasks");
         for(j = 0; j < taskList[i].tasks.length; j++) { 
@@ -147,12 +150,14 @@
 
   /**
    * To add new task in right side
+   * @param event
+   *        provide the event
    */
-  function addNewTask(e) {
+  function addNewTask(event) {
     var input = document.getElementById("new-task");
     let category = input.getAttribute("category");
-        if (e.code === "Enter" || e.keyCode === 13 || e.which === 13) { 
-        let text = e.target.value;
+        if (event.code === "Enter" || event.keyCode === 13 || event.which === 13) { 
+        let text = event.target.value;
           if(text != "") {
             let value ;
             document.getElementById("new-task"). value = "";
@@ -163,7 +168,6 @@
             let paragraph = document.createElement("span");
             input.type = "radio";
             paragraph.id = "task-name";
-            //input.className = "d-block";
             if(category == "Important"){
               star.className = "fa fa-star";
             value = addTask(category, text, "true", "true");
@@ -176,7 +180,6 @@
             li.appendChild(input);
             li.appendChild(paragraph);
             li.appendChild(star);
-            //paragraph.className = "tasks";
             li.className = "style-for-task";
           }
         }
@@ -184,20 +187,29 @@
 
   /**
    * Add task in task list
+   * @param categories
+   *        provide category name
+   * @param Usertask
+   *        provide task name
+   * @param complete
+   *        provide task status for complete
+   * @param important
+   *        provide task status for important
    */
-function addTask(categories, Usertask, complete, important) {
-  let flag = 0;
-  for(i = 0; i < taskList.length; i++){    
-    if(categories === taskList[i].category) {
-      flag = 1;
-      var task = {
-        taskName : Usertask,
-        isComplete : complete,
-        isImportant : important
-      }
-      taskList[i].tasks.push(task);
-     break;
-    } }
+  function addTask(categories, Usertask, complete, important) {
+    let flag = 0;
+    for(i = 0; i < taskList.length; i++){    
+      if(categories === taskList[i].category) {
+        flag = 1;
+        var task = {
+          taskName : Usertask,
+          isComplete : complete,
+          isImportant : important
+        }
+        taskList[i].tasks.push(task);
+        break;
+      } 
+    }
     if(taskList.length === 0 || flag === 0) {
       var taskDetails = {
          category : categories,
@@ -211,10 +223,14 @@ function addTask(categories, Usertask, complete, important) {
        };
        taskList.push(taskDetails);
       }
-   return Usertask;
- }
+    return Usertask;
+  }
 
-
+  /**
+   * To check task is completed or not
+   * @param task
+   *        provide the task name
+   */
  function isComplete(task) {
   
   for(i = 0; i < taskList.length; i++){
@@ -232,6 +248,11 @@ function addTask(categories, Usertask, complete, important) {
   }
 }
 
+  /**
+   * To check task is important or not
+   * @param target
+   *        provide the task name
+   */
 function isImportant(task) {
   for(i = 0; i < taskList.length; i++){
     for(j = 0; j < taskList[i].tasks.length; j++) {
@@ -246,34 +267,42 @@ function isImportant(task) {
   }
 }
 
-/**
- * Bind function when user click on user task list
- */
-document.getElementById("user-tasks").addEventListener("click", function(event) {
-  var target = event.target;
-  if(target.tagName == "SPAN" || target.tagName == "LI") {
-    renderCornerContainer(target); 
-  } 
-  if(target.type === "radio") {
-    if(isComplete(target.nextSibling.innerHTML)) {
-      target.nextSibling.className = "tasks-strikeOut";  
-    } else {
-      target.nextSibling.className = "tasks";      
-      target.checked = false;
-    }
-    renderCornerContainer(target.nextSibling);
+  /**
+   * To make task as complete and incomplete
+   * @param task
+   *        provide the target 
+   */
+function completeAndInCompleteTask(target) {
+  if(isComplete(target.nextSibling.innerHTML)) {
+    target.nextSibling.className = "tasks-strikeOut";  
+  } else {
+    target.nextSibling.className = "tasks";      
+    target.checked = false;
   }
-  if(target.className ===  "far fa-star") {
-    let flag = 0;
-    for(i = 0; i < taskList.length; i++) {
-      for(j = 0; j < taskList[i].tasks.length; j++) {   
+  renderCornerContainer(target.nextSibling);
+}
+
+  /**
+   * To remove task in important category
+   * @param target
+   *        provide the target 
+   */
+function removeTaskInImportantCategory(target) {
+  let flag =0;
+  for(i = 0; i < taskList.length; i++){
+    if(taskList[i].category === "Important") {
+      for(j = 0; j < taskList[i].tasks.length; j++) { 
         if(target.previousSibling.innerHTML === taskList[i].tasks[j].taskName) {
-          taskList[i].tasks[j].isImportant = "true";
-          target.className = "fa fa-star";
-          let boolean = checkContainsInList(target.previousSibling.innerHTML);
-          if(boolean == true) {
-            addTask("Important", target.previousSibling.innerHTML, "true", "true");
-          }
+          target.parentNode.remove();
+          taskList[i].tasks.splice(j, 1);
+        }
+      }
+    } else{
+      checkContainsInList(target.previousSibling.innerHTML);
+      for(j = 0; j < taskList[i].tasks.length; j++) { 
+        if(target.previousSibling.innerHTML === taskList[i].tasks[j].taskName) {
+          taskList[i].tasks[j].isImportant = "false";
+          target.className = "far fa-star"; 
           flag = 1;
           break;
         }
@@ -282,39 +311,65 @@ document.getElementById("user-tasks").addEventListener("click", function(event) 
         break;
       }
     }
+  }
     renderCornerContainer(target.previousSibling);
-  }  else if(target.className ===  "fa fa-star" ) {
-    let flag =0;
-    for(i = 0; i < taskList.length; i++){
-      let taskTitle = document.getElementById("task-titless");
-      if(taskList[i].category === "Important") {
-        for(j = 0; j < taskList[i].tasks.length; j++) { 
-          if(target.previousSibling.innerHTML === taskList[i].tasks[j].taskName) {
-            target.parentNode.remove();
-            taskList[i].tasks.splice(j, 1);
-          }
-        }
-      } else{
-        checkContainsInList(target.previousSibling.innerHTML);
-        for(j = 0; j < taskList[i].tasks.length; j++) { 
-          if(target.previousSibling.innerHTML === taskList[i].tasks[j].taskName) {
-            taskList[i].tasks[j].isImportant = "false";
-            target.className = "far fa-star"; 
-            flag = 1;
-            break;
-          }
-        }
-        if(flag === 1){
-          break;
-        }
-      }
-    }
-      renderCornerContainer(target.previousSibling);
-    }
-  });
+}
 
   /**
+   * To add task in important category
+   * @param target
+   *        provide the target 
+   */
+function addtaskInImportantCategory(target) {
+  let flag = 0;
+  for(i = 0; i < taskList.length; i++) {
+    for(j = 0; j < taskList[i].tasks.length; j++) {   
+      if(target.previousSibling.innerHTML === taskList[i].tasks[j].taskName) {
+        taskList[i].tasks[j].isImportant = "true";
+        target.className = "fa fa-star";
+        let boolean = checkContainsInList(target.previousSibling.innerHTML);
+        if(boolean == true) {
+          addTask("Important", target.previousSibling.innerHTML, "true", "true");
+        }
+        flag = 1;
+        break;
+      }
+    }
+    if(flag === 1){
+      break;
+    }
+  }
+  renderCornerContainer(target.previousSibling);
+}
+
+/**
+ * Bind function when user click on task 
+ */
+document.getElementById("user-tasks").addEventListener("click", assignFunctionalityForTask);
+
+/**
+ * To assign functionality for task when click on task
+ * @param event 
+ *        provide the event
+ */
+  function assignFunctionalityForTask(event) {
+    var target = event.target;
+    if(target.tagName == "SPAN" || target.tagName == "LI") {
+      renderCornerContainer(target); 
+    } 
+    if(target.type === "radio") {
+      completeAndInCompleteTask(target);
+    }
+    if(target.className ===  "far fa-star") {
+      addtaskInImportantCategory(target);
+    } else if(target.className ===  "fa fa-star" ) {
+      removeTaskInImportantCategory(target);
+    }
+  }
+  /**
    * To render corner container
+   * @param target
+   *        provide the target
    */
   function renderCornerContainer(target) {
     document.getElementById("user-options").innerHTML = "";
@@ -345,24 +400,28 @@ document.getElementById("user-tasks").addEventListener("click", function(event) 
 
   /**
    * To render steps
+   * @param target
+   *        provide the target
    */ 
   function renderSteps(target) {
-    let parent = document.getElementById("user-step");
+    //let parent = document.getElementById("user-step");
+    let parent = $("#user-step");
     for(i = 0; i < stepList.length; i++) {
       if(stepList[i].taskName == target.innerHTML) {
-        for(j = 0; j < stepList[i].stepName.length; j++){
-          let list = document.createElement("li");
-          let circle = document.createElement("input");
-          let name = document.createElement("span");
-          let close = document.createElement("icon");
+        for(j = 0; j < stepList[i].stepName.length; j++) {
+          let list =  $("<li></li>");
+          let circle =  $("<input type='radio'></input>");
+          let name = $("<span></span>");
+          let close = $("<icon></icon>");
           circle.type = "radio";
-          name.innerHTML = stepList[i].stepName[j];
-          close.className = "fas fa-times";
-          parent.appendChild(list);
-          list.appendChild(circle);
-          list.appendChild(name);
-          list.appendChild(close);
-          document.getElementById("new-step").value = "";
+          name.text(stepList[i].stepName[j]);
+          close.addClass("fas fa-times");
+          parent.append(list);
+          list.append(circle);
+          list.append(name);
+          list.append(close);
+          $("#new-step").val("");
+          //document.getElementById("new-step").value = "";
         }
       }
     }
@@ -371,36 +430,53 @@ document.getElementById("user-tasks").addEventListener("click", function(event) 
   /**
    * To bind to add new step
    */ 
-  document.getElementById("new-step").addEventListener("keypress", addStep); 
+  //document.getElementById("new-step").addEventListener("keypress", addStep); 
+  //$(document).ready(function(){
+    $("#new-step").keypress(addStep);
+  //});
 
   /**
    * To add new step
+   * @param event 
+   *        provide the event
    */ 
   function addStep(event) {
-    let taskTitle = document.getElementById("task-titless");
+    //let taskTitle = document.getElementById("task-titless");
+    let taskTitle = $("#task-titless").text();
     if(event.code === "Enter") {
       let text = event.target.value;
       if(text != "") {
-        let parent = document.getElementById("user-step");
-        let value = addStepInList(taskTitle.innerHTML, event.target.value);
-        let li = document.createElement("li");
-        let circle = document.createElement("input");
-        let name = document.createElement("span");
-        let close = document.createElement("icon");
-        circle.type = "radio";
-        name.innerHTML = value;
-        close.className = "fas fa-times";
-        parent.appendChild(li);
-        li.appendChild(circle);
-        li.appendChild(name);
-        li.appendChild(close);
-        document.getElementById("new-step").value = "";
+        $("#new-step").val("");
+       // let parent = document.getElementById("user-step");
+        let parent = $("#user-step");
+        let value = addStepInList(taskTitle, text);
+        let li = $("<li></li>");
+        let circle = $("<input type='radio'></input>");
+        let name = $("<span></span>");
+        let close = $("<icon></icon>");
+        // let li = document.createElement("li");
+        // let circle = document.createElement("input");
+        // let name = document.createElement("span");
+        // let close = document.createElement("icon");
+        // circle.append("radio");
+        name.text(text);
+        close.addClass("fas fa-times");
+        parent.append($(li));
+        li.append(circle);
+        li.append(name);
+        li.append(close);
+        //document.getElementById("new-step").value = "";
+        
       }
     }
   }
 
   /**
    * To add new step in list
+   * @param task 
+   *        provide task name
+   * @param step 
+   *        provide step name
    */ 
   function addStepInList(task, step) {
     let flag = 0;
@@ -428,6 +504,8 @@ document.getElementById("user-tasks").addEventListener("click", function(event) 
 
   /**
    * To process when click on step title
+   * @param event 
+   *        provide event
    */ 
     function bindUserStep(event) {
       target = event.target;      
@@ -474,6 +552,8 @@ document.getElementById("user-tasks").addEventListener("click", function(event) 
 
   /**
    * To remove task in importany category
+   * @param task 
+   *        provide task name
    */ 
     function checkContainsInList(task) {
       let boolean = true;
